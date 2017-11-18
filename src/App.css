@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -33,7 +40,7 @@
 }
 
 .searchSection {
-    padding: 40px;
+    padding: 20px;
 }
 
 @keyframes App-logo-spin {
