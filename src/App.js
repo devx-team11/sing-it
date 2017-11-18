@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import { Form, SpotifyLogin } from './components';
+import { Form, SpotifyLogin, Slider } from './components';
 import { parseQuery } from './util';
 import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -14,15 +14,24 @@ class App extends Component {
     super()
     this.state = {
       inputValue: '',
+      snippetBeginning: 0,
+      snippetEnd: 100,
     }
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleFormChange = this.handleFormChange.bind(this);
+    // this.handleSliderChange = this.handleSliderChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChange (e) {
+  handleFormChange = (e) => {
     this.setState({ inputValue: e.target.value });
   }
-  handleSubmit () {
+  handleSubmit = () => {
     alert(`Finding song ${this.state.inputValue}`);
+  }
+  handleSliderChange = (changeArray) => {
+    this.setState(state => ({
+      snippetBeginning: changeArray[0],
+      snippetEnd: changeArray[1]
+    }))
   }
   componentDidMount () {
     if (window.location.pathname === '/callback') {
@@ -37,7 +46,8 @@ class App extends Component {
           <h1 className='App-title'>Welcome to Sing-it</h1>
         </header>
         <SpotifyLogin />
-        <Form handleChange={this.handleChange} handleSubmit={this.handleSubmit} inputValue={this.state.inputValue} />
+        <Form handleChange={this.handleFormChange} handleSubmit={this.handleSubmit} inputValue={this.state.inputValue} />
+        <Slider handleChange={this.handleSliderChange}/>
       </div>
     </MuiThemeProvider>
     );
