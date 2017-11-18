@@ -1,0 +1,1 @@
+export { default as parseQuery } from './parse-query';
