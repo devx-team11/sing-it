@@ -4,6 +4,21 @@ import { Form } from './components';
 import './App.css';
 
 class App extends Component {
+  constructor () {
+    super()
+    this.state = {
+      inputValue: '',
+    }
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleChange (e) {
+    this.setState({ inputValue: e.target.value });
+  }
+  handleSubmit () {
+    alert(`Finding song ${this.state.inputValue}`);
+  }
   render() {
     return (
       <div className='App'>
