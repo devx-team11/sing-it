@@ -3,6 +3,11 @@ import logo from './logo.svg';
 import { Form, SpotifyLogin } from './components';
 import { parseQuery } from './util';
 import './App.css';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import ReactDOM from 'react-dom';
+
+
+
 
 class App extends Component {
   constructor () {
@@ -26,6 +31,7 @@ class App extends Component {
   }
   render() {
     return (
+    <MuiThemeProvider>
       <div className='App'>
         <header className='App-header'>
           <h1 className='App-title'>Welcome to Sing-it</h1>
@@ -33,6 +39,7 @@ class App extends Component {
         <SpotifyLogin />
         <Form handleChange={this.handleChange} handleSubmit={this.handleSubmit} inputValue={this.state.inputValue} />
       </div>
+    </MuiThemeProvider>
     );
   }
 }
