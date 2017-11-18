@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './singit.png';
 import { Form, SpotifyLogin } from './components';
 import { parseQuery } from './util';
 import './App.css';
@@ -34,7 +34,7 @@ class App extends Component {
     <MuiThemeProvider>
       <div className='App'>
         <header className='App-header'>
-          <h1 className='App-title'>Welcome to Sing-it</h1>
+          <img src={logo} className="App-logo" alt="logo" />
         </header>
         <SpotifyLogin />
         <Form handleChange={this.handleChange} handleSubmit={this.handleSubmit} inputValue={this.state.inputValue} />

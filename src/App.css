@@ -3,7 +3,6 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
 
@@ -20,6 +19,17 @@
 
 .App-intro {
   font-size: large;
+}
+
+.searchForm {
+    padding: 20px;
+}
+
+#searchField {
+  margin-left: 10px;
+  margin-right:10px;
+  margin-top: 10px;
+  margin-bottom:10px;
 }
 
 @keyframes App-logo-spin {
