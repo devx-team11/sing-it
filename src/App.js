@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import { Form } from './components';
+import { Form, SpotifyLogin } from './components';
+import { parseQuery } from './util';
 import './App.css';
 
 class App extends Component {
@@ -9,7 +10,6 @@ class App extends Component {
     this.state = {
       inputValue: '',
     }
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -18,6 +18,11 @@ class App extends Component {
   }
   handleSubmit () {
     alert(`Finding song ${this.state.inputValue}`);
+  }
+  componentDidMount () {
+    if (window.location.pathname === '/callback') {
+      localStorage.setItem('spotify-token', parseQuery(window.location, 'hash').access_token);
+    }
   }
   render() {
     return (
