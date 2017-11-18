@@ -7,6 +7,7 @@ const style = {
 };
 
 export default ({ inputValue, handleChange, handleSubmit}) => (
+    
 <div className='searchSection'>
 <p>Enter the link of the song you want to use.</p>
   <form onSubmit={handleSubmit} >
@@ -19,6 +20,8 @@ export default ({ inputValue, handleChange, handleSubmit}) => (
       /> 
   <RaisedButton style={style} label="Search" type="Submit" />
 
+
   </form>
+  
 </div>
 );
