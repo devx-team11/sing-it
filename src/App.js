@@ -4,10 +4,6 @@ import { Form, SpotifyLogin } from './components';
 import { parseQuery } from './util';
 import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import ReactDOM from 'react-dom';
-
-
-
 
 class App extends Component {
   constructor () {
