@@ -30,6 +30,7 @@ class App extends Component {
         <header className='App-header'>
           <h1 className='App-title'>Welcome to Sing-it</h1>
         </header>
+        <SpotifyLogin />
         <Form handleChange={this.handleChange} handleSubmit={this.handleSubmit} inputValue={this.state.inputValue} />
       </div>
     );
