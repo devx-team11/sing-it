@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import { Form } from './components';
 import './App.css';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import ReactDOM from 'react-dom';
+
+
+
 
 class App extends Component {
   constructor () {
@@ -21,12 +25,14 @@ class App extends Component {
   }
   render() {
     return (
+    <MuiThemeProvider>
       <div className='App'>
         <header className='App-header'>
           <h1 className='App-title'>Welcome to Sing-it</h1>
         </header>
         <Form handleChange={this.handleChange} handleSubmit={this.handleSubmit} inputValue={this.state.inputValue} />
       </div>
+    </MuiThemeProvider>
     );
   }
 }
