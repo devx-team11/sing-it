@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import logo from './logo.svg';
-import { Form, SpotifyLogin, Player, Slider } from './components';
-import { parseQuery } from './util';
+import logo from './singit.png';
+import { Form, SpotifyLogin, Player } from './components';
 import './App.css';
-    
+
 class App extends Component {
   constructor () {
     super()
@@ -42,6 +41,9 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div className='App'>
+        <header className='App-header'>
+          <img src={logo} className="App-logo" alt="logo" />
+        </header>
           {window.Demo.isAccessToken() === false && <SpotifyLogin />}
           <Form handleChange={this.handleFormChange} handleSubmit={this.handleSubmit} inputValue={this.state.inputValue} />
           { this.state.renderPlayer && <Player /> }
