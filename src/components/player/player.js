@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PlayerAlbumArt from './album-art';
 import PlayerTrack from './player-track';
-import PlayerControls from './controls';
 import PlayerArtists from './artists';
 import PlayerBackgroundAlbumArt from './background-album-art';
 import Slider from '../slider';
@@ -39,7 +38,6 @@ export default class Player extends Component {
               <PlayerTrack track={current_track} />
               <Slider handleChange={this.handleCroppingChange} />
               <PlayerArtists artists={current_track.artists} />
-              <PlayerControls state={this.props.currentState} />
             </div>
           </div>
         </div>

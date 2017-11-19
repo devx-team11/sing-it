@@ -94,7 +94,6 @@ footer > p > a {
 /* Player */
 
 .screen.screen-player-album-art {
-  position: fixed;
   left: 0;
   top: 0;
   z-index: -1;
@@ -163,6 +162,7 @@ footer > p > a {
 .screen.screen-player .player.player-album-art {
   opacity: 0.75;
   text-align: right;
+  float: left;
 }
 
 .screen.screen-player .player.player-album-art img {

@@ -13,6 +13,8 @@ export default ({ inputValue, handleChange, handleSubmit}) => (
   <form onSubmit={e => handleSubmit(e)} >
       <TextField
       hintText='Enter Song Title' 
+	  hintStyle={{ color: 'gray' }}
+	  inputStyle={{ color: 'white' }}
       name='finder' 
       id='finder' 
       value={inputValue} 
