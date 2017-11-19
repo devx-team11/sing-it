@@ -22,11 +22,8 @@ export default class Player extends Component {
         });
       });
   }
-  componentWillReceiveProps(nextProps) {
-	  this.setState({ nextTrack: nextProps.nextTrack });
-  }
   render() {
-    let current_track = this.state.nextTrack || this.props.currentState.track_window.current_track; 
+    let { current_track } = this.props.currentState.track_window;
     let image = current_track.album.images[2];
     return (
       <div className="screen screen-player">
