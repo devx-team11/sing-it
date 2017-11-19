@@ -10,13 +10,9 @@ export default class Player extends Component {
   constructor (props) {
     super(props)
   }
-  current_track() {
-    return this.props.track.current_track;
-  }
-
   render() {
-    let track = this.current_track();
-    let image = track.album.images[2];
+    let { current_track } = this.props.currentState.track_window;
+    let image = current_track.album.images[2];
     // let input = this.state.value || '';
     return (
       <div className="screen screen-player">
@@ -26,11 +22,11 @@ export default class Player extends Component {
               <PlayerAlbumArt image_url={image.url} />
             </div>
             <div className="col-sm-9">
-              <PlayerProgress state={this.props.state} showPosition={true} showDuration={true} />
-              <PlayerTrack track={track} />
-              <PlayerArtists artists={track.artists} />
-              <span><a href={track.album.url}></a></span>
-              <PlayerControls state={this.props.state} />
+              <PlayerProgress state={this.props.currentState} showPosition={true} showDuration={true} />
+              <PlayerTrack track={current_track} />
+              <PlayerArtists artists={current_track.artists} />
+              <span><a href={current_track.album.url}></a></span>
+              {/* <PlayerControls state={this.props.currentState} /> */}
             </div>
           </div>
         </div>

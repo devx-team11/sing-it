@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
 export default class PlayerProgress extends Component {
+  constructor (props) {
+    super(props)
+  }
   parseTime (seconds) {
     seconds = seconds / 1000;
     return [

@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default () => (
+export default (props) => (
   <div className="player player-album-art">
-    <img src={this.props.image_url} />
+    <img src={props.image_url} />
   </div>
 );
