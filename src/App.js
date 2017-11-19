@@ -21,6 +21,12 @@ class App extends Component {
   handleFormChange (e) {
     this.setState({ inputValue: e.target.value });
   }
+  handleSliderChange (changeArray) {
+    this.setState(state => ({
+      snippetBeginning: changeArray[0],
+      snippetEnd: changeArray[1]
+    }))
+  }
   handleSubmit () {
     alert(`Finding song ${this.state.inputValue}`);
   }
