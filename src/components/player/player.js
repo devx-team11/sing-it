@@ -7,7 +7,7 @@ import PlayerBackgroundAlbumArt from './background-album-art';
 import Slider from '../slider';
 
 export default class Player extends Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {};
   }

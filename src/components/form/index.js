@@ -9,10 +9,10 @@ const style = {
 export default ({ inputValue, handleChange, handleSubmit}) => (
     
 <div className='searchSection'>
-<p>Enter the link of the song you want to use.</p>
-  <form onSubmit={handleSubmit} >
+<p>Enter the title of the song you want to use.</p>
+  <form onSubmit={e => handleSubmit(e)} >
       <TextField
-      hintText='Enter URI' 
+      hintText='Enter Song Title' 
       name='finder' 
       id='finder' 
       value={inputValue} 
