@@ -4,7 +4,7 @@ import Slider from 'rc-slider';
 
 const Range = Slider.Range;
 
-const style = { width: "400px", margin: "auto", "padding": "30px" };
+const style = { width: "400px", marginTop: "5%", padding: "30px", float: "left" };
 
 export default ({ handleChange }) => (
   <div style={style}>
