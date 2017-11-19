@@ -42,7 +42,6 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div className='App'>
-          <Slider handleChange={this.handleSliderChange}/>
           {window.Demo.isAccessToken() === false && <SpotifyLogin />}
           <Form handleChange={this.handleFormChange} handleSubmit={this.handleSubmit} inputValue={this.state.inputValue} />
           { this.state.renderPlayer && <Player /> }
