@@ -1,5 +1,4 @@
 import React from 'react';
-import SPOTIFYAUTHURL from '../../config';
 import RaisedButton from 'material-ui/RaisedButton';
 
 

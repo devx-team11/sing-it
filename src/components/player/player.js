@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PlayerAlbumArt from './album-art';
-import PlayerProgress from './player-progress';
 import PlayerTrack from './player-track';
 import PlayerControls from './controls';
 import PlayerArtists from './artists';
