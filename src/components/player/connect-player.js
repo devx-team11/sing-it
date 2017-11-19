@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Player from './player';
-import { SDK, init } from '../../util';
 
 export default class ConnectPlayer extends Component {
   constructor () {
