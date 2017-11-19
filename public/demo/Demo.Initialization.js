@@ -27,31 +27,6 @@ window.Demo = {
   renderWebPlaybackSDKError:   null, // Throw an error (our app equiv. of console.error)
   onSpotifyPlayerConnected:    null, // User session starts
   onSpotifyUserSessionExpires: null, // User session expires
-  
-  /**
-   * Transfer Playback.
-   *
-   * See https://beta.developer.spotify.com/documentation/web-api/
-   *
-   * Example code:
-   *   Demo.transferPlayback()
-   */
-  transferPlayback: () => {
-    let request = new Request("https://api.spotify.com/v1/me/player", {
-      method: "PUT",
-      headers: new Headers({
-        'Content-Type':  'application/json; charset=utf-8',
-        'Authorization': 'Bearer ' + Demo.getAccessToken()
-      }),
-      body: JSON.stringify({
-        play: true,
-        device_ids: [Demo.WebPlaybackSDK._options.id]
-      })
-    });
-    
-    return window.fetch(request);
-  },
-  
   /**
    * Play a track.
    *
@@ -69,10 +44,10 @@ window.Demo = {
        }),
       body: JSON.stringify({ uris: [uri] })
      });
-     
+
      return window.fetch(request).then((resp) => resp.json());
    },
-  
+
   /**
    * Search
    *

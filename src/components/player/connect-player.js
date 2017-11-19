@@ -5,9 +5,21 @@ import { SDK, init } from '../../util';
 export default class ConnectPlayer extends Component {
   constructor () {
     super()
-    this.state = {
-      showPlayer: false,
-    }
+    this.state = {}
+  }
+  transferPlayback () {
+    let request = new Request("https://api.spotify.com/v1/me/player", {
+      method: "PUT",
+      headers: new Headers({
+        'Content-Type':  'application/json; charset=utf-8',
+        'Authorization': 'Bearer ' + window.Demo.getAccessToken()
+      }),
+      body: JSON.stringify({
+        play: true,
+        device_ids: [window.Demo.WebPlaybackSDK._options.id]
+      })
+    });
+    return fetch(request);
   }
   listenForFocusOnWebPlayer() {
     let _this = this;
@@ -15,19 +27,17 @@ export default class ConnectPlayer extends Component {
       _this.stateHandler(state);
     };
 
-    // Call once when connected
     window.Demo.WebPlaybackSDK.getCurrentState().then(stateHandlerCallback);
 
-    // When a change is made
     window.Demo.WebPlaybackSDK.on("player_state_changed", stateHandlerCallback);
-
-    // Poll status every 0.1 seconds
-    // This is just to improve the UI for the progress bar
-    setInterval(() => {
-      window.Demo.WebPlaybackSDK.getCurrentState().then(stateHandlerCallback);
-    }, 100);
   }
   waitingToStart() {
+    setInterval(() => {
+      window.Demo.WebPlaybackSDK.getCurrentState().then(res => {
+        if (res) this.setState({ currentState: res });
+        this.stateHandler();
+      });
+    }, 100);
     let player_name = window.Demo.WebPlaybackSDK._options.name;
     return (
       <div className="screen screen-connect-player">
@@ -40,15 +50,20 @@ export default class ConnectPlayer extends Component {
     );
   }
   stateHandler(state) {
-    if (state && state.track_window) this.setState({ showPlayer: true });
-    if (this.state.showPlayer) return <Player track={state.track_window} />
-    else {
+    if (!this.state.currentState) {
       return this.waitingToStart();
     }
+    return <Player currentState={this.state.currentState} />
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.currentState !== nextState.currentState) return true;
+    return false;
+  }
+  componentDidMount () {
+    this.transferPlayback();
+    this.listenForFocusOnWebPlayer();
   }
   render() {
-    this.listenForFocusOnWebPlayer(); // Start waiting to hear back from Demo.WebPlaybackSDK
-    window.Demo.transferPlayback();          // Transfer playback to SDK (via Connect Web API over HTTP)
     return this.stateHandler();
   }
 }
