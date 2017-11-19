@@ -26,7 +26,7 @@ export default class Player extends Component {
               <PlayerTrack track={current_track} />
               <PlayerArtists artists={current_track.artists} />
               <span><a href={current_track.album.url}></a></span>
-              {/* <PlayerControls state={this.props.currentState} /> */}
+              <PlayerControls state={this.props.currentState} />
             </div>
           </div>
         </div>
