@@ -45,18 +45,14 @@ export default class Player extends Component {
       <div className="screen screen-player">
         <div className="player">
           <div className="row">
-            <div className="col-sm-3">
+            <div className="col-sm-12">
               <PlayerAlbumArt image_url={image.url} />
-            </div>
-            <div className="col-sm-9">
               <PlayerTrack track={current_track} />
-              <Slider handleChange={this.handleCroppingChange} />
               <PlayerArtists artists={current_track.artists} />
+              <Slider handleChange={this.handleCroppingChange} />
             </div>
           </div>
         </div>
-
-        <PlayerBackgroundAlbumArt image_url={image.url} />
       </div>
     );
   }
