@@ -167,12 +167,13 @@ footer > p > a {
 
 .screen.screen-player .player.player-album-art img {
   display: inline-block;
-  width: 100%;
+  width: 60%;
+  padding: 5%;
 }
 
 .screen.screen-player .player.player-track {
-  font-size: 600%;
-  letter-spacing: -5px;
+  font-size: 350%;
+  text-align: initial;
 }
 
 .screen.screen-player .player.player-artists {
@@ -187,7 +188,8 @@ footer > p > a {
 
 .screen.screen-player .player.player-artists li:first-child {
   display: block;
-  font-size: 300%;
+  font-size: 250%;
+  text-align: initial;
   letter-spacing: -2px;
 }
 
