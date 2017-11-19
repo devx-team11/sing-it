@@ -87,17 +87,8 @@ class App extends Component {
     else if(this.state.pathname === '/') {
       window.localStorage.clear()
     }
-  {
-    window.Demo.isAccessToken() ? (
-      <div>
-        <Form handleChange={this.handleFormChange} handleSubmit={this.handleSubmit} inputValue={this.state.inputValue} />
-        {this.state.renderPlayer && <Player />}
-      </div>
-    ) : (
-      
-    )
-  }
-    else if(window.Demo.isAccessToken() !== false) {
+    
+    if(window.Demo.isAccessToken() !== false) {
         if (localStorage.getItem('queryStrings') !== null){
           const { trackId, beginAt, endAt } = localStorage.getItem('queryStrings')
           mainComponent = (<TrackView 
@@ -114,9 +105,9 @@ class App extends Component {
           )
         }
     }
-  else {
-    mainComponent = (<SpotifyLogin />)
-  }
+    else {
+      mainComponent = (<SpotifyLogin />)
+    }
 
     return (
       <MuiThemeProvider>
