@@ -4,6 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import logo from './singit.png';
 import { Form, SpotifyLogin, Player, TrackView } from './components';
 import './App.css';
+import SPOTIFYSEARCHURL from './config';
 
 class App extends Component {
   constructor () {
@@ -27,7 +28,6 @@ class App extends Component {
     }
     this.handleFormChange = this.handleFormChange.bind(this);
     this.handleSliderChange = this.handleSliderChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleFormChange (e) {
     this.setState({ inputValue: e.target.value });
@@ -38,8 +38,34 @@ class App extends Component {
       snippetEnd: changeArray[1]
     }))
   }
-  handleSubmit () {
-    alert(`Finding song ${this.state.inputValue}`);
+  handleSearchTracks = (query) => {
+    let request = new Request("https://api.spotify.com/v1/search?type=track&q="+query+"*&market=from_token", {
+      method: "GET",
+      headers: new Headers({
+        'Content-Type':  'application/json; charset=utf-8',
+        'Authorization': 'Bearer ' + window.Demo.getAccessToken()
+      })
+    });
+
+    return window.fetch(request).then((resp) => resp.json());
+  }
+  handlePlayTrack = (uri) => {
+    let request = new Request("https://api.spotify.com/v1/me/player/play", {
+      method: "PUT",
+      headers: new Headers({
+        'Content-Type':  'application/json; charset=utf-8',
+        'Authorization': 'Bearer ' + window.Demo.getAccessToken()
+      }),
+     body: JSON.stringify({ uris: [uri] })
+    });
+
+    fetch(request).catch(e => console.error(e));
+  }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.handleSearchTracks(this.state.inputValue).then(results => {
+      this.handlePlayTrack(results.tracks.items["0"].uri)
+    })
   }
   shouldRenderPlayer () {
     setTimeout(() => {
@@ -61,23 +87,36 @@ class App extends Component {
     else if(this.state.pathname === '/') {
       window.localStorage.clear()
     }
-    else {
-      if (window.Demo.isAccessToken() !== false && localStorage.getItem('queryStrings') !== null){
-        const { trackId, beginAt, endAt } = localStorage.getItem('queryStrings')
-        mainComponent = (<TrackView 
-          handlePauseButtonClick={() => console.log('pause')}
-          handlePlayButtonClick={() => console.log('play')}
-        />)
-      }
-      else {
-        mainComponent = (
-          <div>
-            <Form handleChange={this.handleFormChange} handleSubmit={this.handleSubmit} inputValue={this.state.inputValue} />
-            { this.state.renderPlayer && <Player /> }
-          </div>
-        )
-      }
+  {
+    window.Demo.isAccessToken() ? (
+      <div>
+        <Form handleChange={this.handleFormChange} handleSubmit={this.handleSubmit} inputValue={this.state.inputValue} />
+        {this.state.renderPlayer && <Player />}
+      </div>
+    ) : (
+      
+    )
+  }
+    else if(window.Demo.isAccessToken() !== false) {
+        if (localStorage.getItem('queryStrings') !== null){
+          const { trackId, beginAt, endAt } = localStorage.getItem('queryStrings')
+          mainComponent = (<TrackView 
+            handlePauseButtonClick={() => console.log('pause')}
+            handlePlayButtonClick={() => console.log('play')}
+          />)
+        }
+        else {
+          mainComponent = (
+            <div>
+              <Form handleChange={this.handleFormChange} handleSubmit={this.handleSubmit} inputValue={this.state.inputValue} />
+              { this.state.renderPlayer && <Player /> }
+            </div>
+          )
+        }
     }
+  else {
+    mainComponent = (<SpotifyLogin />)
+  }
 
     return (
       <MuiThemeProvider>
@@ -85,7 +124,6 @@ class App extends Component {
         <header className='App-header'>
           <img src={logo} className="App-logo" alt="logo" />
         </header>
-          {window.Demo.isAccessToken() === false && <SpotifyLogin />}
           {mainComponent}
         </div>
       </MuiThemeProvider>
