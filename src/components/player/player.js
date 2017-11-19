@@ -7,11 +7,11 @@ import PlayerBackgroundAlbumArt from './background-album-art';
 import Slider from '../slider';
 
 export default class Player extends Component {
-	constructor() {
-		super()
-		this.state = {};
-	}
-  handleCroppingChange ([beginPercentage, endPercentage]) {
+  constructor() {
+    super()
+    this.state = {};
+  }
+  handleCroppingChange = ([beginPercentage, endPercentage]) => {
       window.Demo.WebPlaybackSDK.getCurrentState().then(res => {
         const { duration } = res
         const snippetBeginning = Math.floor((duration / 100) * beginPercentage)
