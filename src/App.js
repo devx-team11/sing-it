@@ -5,7 +5,7 @@ import logo from './logo.svg';
 import { Form, SpotifyLogin, Player, Slider } from './components';
 import { parseQuery } from './util';
 import './App.css';
-
+    
 class App extends Component {
   constructor () {
     super()
