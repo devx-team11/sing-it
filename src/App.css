@@ -1,15 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
 .App {
   text-align: center;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 120px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  background-color: #1DB954;
+  height: 110px;
   padding: 20px;
   color: white;
 }
@@ -20,6 +26,21 @@
 
 .App-intro {
   font-size: large;
+}
+
+
+
+#searchField {
+  margin-right:10px;
+}
+
+
+.loginSection {
+    padding: 40px;
+}
+
+.searchSection {
+    padding: 20px;
 }
 
 @keyframes App-logo-spin {
