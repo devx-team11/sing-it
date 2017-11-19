@@ -7,6 +7,10 @@ import PlayerBackgroundAlbumArt from './background-album-art';
 import Slider from '../slider';
 
 export default class Player extends Component {
+	constructor() {
+		super()
+		this.state = {};
+	}
   handleCroppingChange ([beginPercentage, endPercentage]) {
       window.Demo.WebPlaybackSDK.getCurrentState().then(res => {
         const { duration_ms } = res.track_window.current_track
@@ -18,8 +22,11 @@ export default class Player extends Component {
         });
       });
   }
+  componentWillReceiveProps(nextProps) {
+	  this.setState({ nextTrack: nextProps.nextTrack });
+  }
   render() {
-    let { current_track } = this.props.currentState.track_window;
+    let current_track = this.state.nextTrack || this.props.currentState.track_window.current_track; 
     let image = current_track.album.images[2];
     return (
       <div className="screen screen-player">
