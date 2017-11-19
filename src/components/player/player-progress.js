@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 
 export default class PlayerProgress extends Component {
-  constructor (props) {
-    super(props)
-  }
-  parseTime (seconds) {
+  parseTime (seconds, radix) {
     seconds = seconds / 1000;
     return [
-        parseInt(seconds / 60 % 60),
-        parseInt(seconds % 60)
+        parseInt(seconds / 60 % 60, radix),
+        parseInt(seconds % 60, radix)
     ].join(":").replace(/\b(\d)\b/g, "0$1");
   }
   renderPosition () {

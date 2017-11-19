@@ -44,12 +44,9 @@ export default class Controls extends Component {
     }
   }
   render () {
-    let track_id = this.props.state.track_window.current_track.id;
-    let track_url = "https://open.spotify.com/track/" + track_id;
-
     return (
       <ul className="player player-controls">
-        <li><a onClick={this.previousTrack} className="fa fa-fast-backward"></a></li>
+        <li><a onClick={this.previousTrack} className="fa fa-fast-backward">fast back</a></li>
         {this.renderPlayOrPause()}
         <li><a onClick={this.nextTrack} className="fa fa-fast-forward">Next</a></li>
         <li><a onClick={this.mute} className="fa fa-volume-off">Mute</a></li>

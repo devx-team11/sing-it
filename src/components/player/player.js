@@ -7,9 +7,6 @@ import PlayerArtists from './artists';
 import PlayerBackgroundAlbumArt from './background-album-art';
 
 export default class Player extends Component {
-  constructor (props) {
-    super(props)
-  }
   render() {
     let { current_track } = this.props.currentState.track_window;
     let image = current_track.album.images[2];
@@ -25,7 +22,6 @@ export default class Player extends Component {
               <PlayerProgress state={this.props.currentState} showPosition={true} showDuration={true} />
               <PlayerTrack track={current_track} />
               <PlayerArtists artists={current_track.artists} />
-              <span><a href={current_track.album.url}></a></span>
               <PlayerControls state={this.props.currentState} />
             </div>
           </div>

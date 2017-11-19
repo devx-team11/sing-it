@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import ReactDOM from 'react-dom';
 
 import logo from './logo.svg';
 import { Form, SpotifyLogin, Player, Slider } from './components';
